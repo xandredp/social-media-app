@@ -2,22 +2,35 @@ const { gql } = require('apollo-server')
 
 module.exports =  gql`
 	type Post {
-		id: ID!,
-		body: String!,
-		createdAt: String!,
+		id: ID!
+		body: String!
+		createdAt: String!
 		username: String!
+		comments: [Comment]!
+		likes: [Like]!
 	}
 	type User {
-		id: ID!,
-		email: String!,
-		token: String!,
-		username: String!,
+		id: ID!
+		email: String!
+		token: String!
+		username: String!
 		createdAt: String!
 	}
+	type Comment {
+		id: ID!
+		createdAt: String!
+		username: String!
+		body: String!
+	}
+	type Like {
+		id: ID!
+		createdAt: String!
+		username: String!
+	}
 	input RegisterInput {
-		username: String!,
-		password: String!,
-		confirmPassword: String!,
+		username: String!
+		password: String!
+		confirmPassword: String!
 		email: String!
 	}
 	type Query {
@@ -29,5 +42,8 @@ module.exports =  gql`
 		login(username: String!, password: String!): User!
 		createPost(body: String!): Post!
 		deletePost(postId: ID!): String!
+		createComment(postId: ID!, body: String!): Post!
+		deleteComment(postId: ID!, commentId: ID!): Post!
+		likePost(PostId: ID!): Post!
 	}
 `
