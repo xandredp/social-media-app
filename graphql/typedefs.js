@@ -27,6 +27,9 @@ module.exports =  gql`
 		createdAt: String!
 		username: String!
 	}
+	type Subscription {
+		newPost: Post!
+	}
 	input RegisterInput {
 		username: String!
 		password: String!
