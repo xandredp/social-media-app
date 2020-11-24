@@ -7,7 +7,7 @@ import PostCard from '../components/PostCard'
 const Home = () => {
 	const {
 		loading,
-		data: { getPosts: posts }
+		data
 	} = useQuery(FETCH_POSTS_QUERY)
 
 	return (
@@ -20,12 +20,12 @@ const Home = () => {
 					loading ? (
 						<h1>Loading posts...</h1>
 					) : (
-						posts && posts.map(post => (
-							<Grid.Column key={post.id} style={{marginBottom: 20}}>
-								<PostCard post={post}/>
-							</Grid.Column>
-						))
-					)
+							data.getPosts && data.getPosts.map(post => (
+								<Grid.Column key={post.id} style={{ marginBottom: 20 }}>
+									<PostCard post={post} />
+								</Grid.Column>
+							))
+						)
 				}
 			</Grid.Row>
 		</Grid>
