@@ -31,12 +31,12 @@ module.exports = {
 			// Returns a user or error
 			const user = checkAuth(context)
 			// Check if body of post is empty
-			if (args.body.trim() === '') {
+			if (body.trim() === '') {
 				throw new Error('Post body must not be empty')
 			}
 			const newPost = new Post({
 				body,
-				user: user.indexOf,
+				user: user.id,
 				username: user.username,
 				createdAt: new Date().toISOString()
 			})
